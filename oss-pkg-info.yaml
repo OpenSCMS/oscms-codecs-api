@@ -1,0 +1,5 @@
+Open Source Software Package:
+- name: oscms-codecs-api
+  source: https://github.com/openscms/oscms-codecs-api
+  license: Apache-2.0
+
