@@ -44,7 +44,7 @@ SO_EXPORT void oscms_empty_signed_certificate_request(OscmsSignedCertificateRequ
 
     // free the rest
     oscms_empty_sequence(&request->allocations);
-    memset(request, 0, sizeof(OscmsSignedCertificateRequest));
+    (void)explicit_bzero(request, sizeof(OscmsSignedCertificateRequest));
 }
 
 SO_EXPORT void oscms_free_signed_certificate_request(OscmsSignedCertificateRequest *request)

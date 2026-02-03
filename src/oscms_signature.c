@@ -34,7 +34,7 @@ SO_EXPORT void oscms_empty_signature(OscmsSignature *oscms_signature)
             oscms_empty_ecc_curve_point(&oscms_signature->rsig.curve_point);
         }
         oscms_empty_octet_buffer(&oscms_signature->s_sig);
-        memset(oscms_signature, 0, sizeof(*oscms_signature));
+        (void)explicit_bzero(oscms_signature, sizeof(*oscms_signature));
     }
 }
 

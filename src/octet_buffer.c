@@ -152,6 +152,11 @@ SO_EXPORT void oscms_empty_octet_buffer(OscmsOctetBuffer *octetBuffer)
     {
         if (octetBuffer->data)
         {
+            // Zeroing the data buffer before freeing.
+            // Using explicit_bzero because it is never optimized or removed by
+            // the compiler.
+            (void)explicit_bzero(octetBuffer->data, octetBuffer->length);
+
             free(octetBuffer->data);
             octetBuffer->data = 0;
         }

@@ -25,7 +25,7 @@ SO_EXPORT void oscms_empty_ee_ra_download_request(OscmsEeRaDownloadRequest *requ
     if (request)
     {
         oscms_empty_octet_buffer(&request->filename);
-        (void)memset(request, 0, sizeof(OscmsEeRaDownloadRequest));
+        (void)explicit_bzero(request, sizeof(OscmsEeRaDownloadRequest));
     }
 }
 

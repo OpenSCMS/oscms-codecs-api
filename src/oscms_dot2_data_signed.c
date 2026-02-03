@@ -27,7 +27,7 @@ SO_EXPORT void oscms_empty_signed_data(OscmsSignedData *signed_data)
         oscms_empty_octet_buffer(&signed_data->payload);
         oscms_empty_signature(&signed_data->signature);
         oscms_empty_certificate(&signed_data->signer_certificate);
-        memset(signed_data, 0, sizeof(OscmsSignedData));
+        (void)explicit_bzero(signed_data, sizeof(OscmsSignedData));
     }
 }
 
