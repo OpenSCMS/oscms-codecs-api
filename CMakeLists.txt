@@ -143,6 +143,26 @@ if(BUILD_TESTS)
   include(CTest)
 endif()
 
+# Ensure the explicit_bzero function is available
+include(CheckSourceCompiles)
+
+check_source_compiles(
+  C
+  "
+    #include <string.h>
+    int main() {
+        char buf[10];
+        explicit_bzero(buf, 10);
+        return 0;
+    }
+"
+  HAVE_EXPLICIT_BZERO)
+
+if(NOT HAVE_EXPLICIT_BZERO)
+  message(
+    FATAL_ERROR "Target platform does not provide explicit_bzero() function")
+endif()
+
 # add source files
 file(GLOB SOURCES "src/*.c" CMAKE_CONFIGURE_DEPENDS)
 

@@ -31,7 +31,7 @@ SO_EXPORT void oscms_empty_ee_ra_cert_request(OscmsEeRaCertRequest *ee_ra_cert_r
 
     oscms_empty_tbs_certificate(&ee_ra_cert_request->tbs_certificate);
     oscms_empty_sequence(&ee_ra_cert_request->allocations);
-    memset(ee_ra_cert_request, 0, sizeof(OscmsEeRaCertRequest));
+    (void)explicit_bzero(ee_ra_cert_request, sizeof(OscmsEeRaCertRequest));
 }
 
 SO_EXPORT void osmcs_free_ee_ra_cert_request(OscmsEeRaCertRequest *ee_ra_cert_request)

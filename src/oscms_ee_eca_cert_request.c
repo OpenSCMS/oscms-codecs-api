@@ -24,7 +24,7 @@ SO_EXPORT void oscms_empty_ee_eca_cert_request(OscmsEeEcaCertRequest *ee_eca_cer
     {
         oscms_empty_tbs_certificate(&ee_eca_cert_request->tbs_certificate);
         oscms_empty_sequence(&ee_eca_cert_request->allocations);
-        memset(ee_eca_cert_request, 0, sizeof(OscmsEeEcaCertRequest));
+        (void)explicit_bzero(ee_eca_cert_request, sizeof(OscmsEeEcaCertRequest));
     }
 }
 

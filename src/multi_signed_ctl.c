@@ -28,14 +28,35 @@ SO_EXPORT void osmcs_empty_multi_signed_ctl(OscmsMultiSignedCtl *msc)
         return;
     }
 
+    size_t i;
+
+    for (i = 0; msc->full_ieee_tbs_ctl.elector_approve && i < msc->full_ieee_tbs_ctl.num_elector_approve; i++)
+    {
+        (void)explicit_bzero(&msc->full_ieee_tbs_ctl.elector_approve[i], sizeof(OscmsCtlElectorEntry));
+    }
     free(msc->full_ieee_tbs_ctl.elector_approve);
+
+    for (i = 0; msc->full_ieee_tbs_ctl.elector_remove && i < msc->full_ieee_tbs_ctl.num_elector_remove; i++)
+    {
+        (void)explicit_bzero(&msc->full_ieee_tbs_ctl.elector_remove[i], sizeof(OscmsCtlElectorEntry));
+    }
     free(msc->full_ieee_tbs_ctl.elector_remove);
+
+    for (i = 0; msc->full_ieee_tbs_ctl.root_ca_approve && i < msc->full_ieee_tbs_ctl.num_root_ca_approve; i++)
+    {
+        (void)explicit_bzero(&msc->full_ieee_tbs_ctl.root_ca_approve[i], sizeof(OscmsRootCaEntry));
+    }
     free(msc->full_ieee_tbs_ctl.root_ca_approve);
+
+    for (i = 0; msc->full_ieee_tbs_ctl.root_ca_remove && i < msc->full_ieee_tbs_ctl.num_root_ca_remove; i++)
+    {
+        (void)explicit_bzero(&msc->full_ieee_tbs_ctl.root_ca_remove[i], sizeof(OscmsRootCaEntry));
+    }
     free(msc->full_ieee_tbs_ctl.root_ca_remove);
 
     if (msc->certs)
     {
-        for (size_t i = 0; i < msc->cert_count; i++)
+        for (i = 0; i < msc->cert_count; i++)
         {
             oscms_empty_octet_buffer(&msc->certs[i]);
         }
@@ -44,12 +65,12 @@ SO_EXPORT void osmcs_empty_multi_signed_ctl(OscmsMultiSignedCtl *msc)
 
     if (msc->ctl_signatures)
     {
-        for (size_t i = 0; i < msc->signature_count; i++)
+        for (i = 0; i < msc->signature_count; i++)
         {
             oscms_empty_octet_buffer(&msc->ctl_signatures[i]);
         }
         free(msc->ctl_signatures);
     }
 
-    memset(msc, 0, sizeof(OscmsMultiSignedCtl));
+    (void)explicit_bzero(msc, sizeof(OscmsMultiSignedCtl));
 }

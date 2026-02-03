@@ -23,7 +23,7 @@
 
 SO_EXPORT void oscms_tbs_certificate_init(OscmsTbsCertificate *tbs_certificate)
 {
-    (void)memset(tbs_certificate, 0, sizeof(*tbs_certificate));
+    (void)explicit_bzero(tbs_certificate, sizeof(*tbs_certificate));
     oscms_sequence_init(&tbs_certificate->allocations);
 }
 

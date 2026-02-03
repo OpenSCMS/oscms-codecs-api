@@ -23,7 +23,7 @@
 SO_EXPORT void oscms_empty_dot2_data_encrypted(OscmsDot2DataEncrypted *dot2_data_encrypted)
 {
     oscms_empty_sequence(&dot2_data_encrypted->allocations);
-    memset(dot2_data_encrypted, 0, sizeof(OscmsDot2DataEncrypted));
+    (void)explicit_bzero(dot2_data_encrypted, sizeof(OscmsDot2DataEncrypted));
 }
 
 SO_EXPORT void oscms_free_dot2_data_encrypted(OscmsDot2DataEncrypted *dot2_data_encrypted)

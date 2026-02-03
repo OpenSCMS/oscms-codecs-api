@@ -24,7 +24,7 @@ SO_EXPORT void oscms_empty_certificate(OscmsCertificate *certificate)
     {
         oscms_empty_tbs_certificate(&certificate->tbs_certificate);
         oscms_empty_sequence(&certificate->allocations);
-        (void)memset(certificate, 0, sizeof(*certificate));
+        (void)explicit_bzero(certificate, sizeof(*certificate));
     }
 }
 
