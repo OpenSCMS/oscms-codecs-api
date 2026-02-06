@@ -25,6 +25,15 @@ SO_EXPORT void *oscms_tracked_malloc(size_t size, OscmsSequence *tracker)
         return NULL;
     }
 
+    if (size >= SIZE_MAX / 2)
+    {
+        // If we're trying to allocate more than half our address space, there's
+        // a problem and calloc will likely fail. However, bad things could happen
+        // if it succeeds (and valgrind gets upset, too).
+        oscms_log(LOG_CRIT, "%s: Attempt to allocate too much memory (%zu bytes)", __func__, size);
+        return NULL;
+    }
+
     void *ptr = calloc(1, size);
     if (ptr)
     {
@@ -56,7 +65,7 @@ SO_EXPORT void *oscms_tracked_calloc(size_t count, size_t size, OscmsSequence *t
         return NULL;
     }
 
-    if (SIZE_MAX / size < count)
+    if (SIZE_MAX / size <= count)
     {
         // Overflow
         oscms_log(LOG_CRIT, "%s: Overflow allocating %zu element(s)s of %zu bytes each", __func__, count, size);
