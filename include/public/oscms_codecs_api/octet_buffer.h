@@ -28,7 +28,7 @@
  * clients and concrete implementations of the API.
  *
  * Functions come in two flavors: those which allocate OscmsOctetBuffer structures (these use names containing `new`
- * or `duplicate`)and those which initialiaze an existing one (with names containing "init" or "copy").
+ * or `duplicate`)and those which initialize an existing one (with names containing "init" or "copy").
  *
  */
 #ifndef OSCMS_OCTET_BUFFER_H
@@ -174,7 +174,7 @@ extern "C"
      *
      * @param source A pointer to the OscmsOctetBuffer structure to copy
      * @param octet_buffer A pointer to the OscmsOctetBuffer structure to initialize
-     * @param tracker A opiotnalpointer to the OscmsSequence structure in which to track the allocated memory
+     * @param tracker A optional pointer to the OscmsSequence structure in which to track the allocated memory
      *
      *
      * @return 0 on success

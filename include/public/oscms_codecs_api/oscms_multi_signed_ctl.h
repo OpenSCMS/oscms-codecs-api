@@ -137,7 +137,7 @@ extern "C"
      *
      * @return void
      */
-    SO_EXPORT void osmcs_empty_multi_signed_ctl(OscmsMultiSignedCtl *multi_signed_ctl);
+    SO_EXPORT void oscms_empty_multi_signed_ctl(OscmsMultiSignedCtl *multi_signed_ctl);
 
 #ifdef __cplusplus
 }

@@ -23,8 +23,8 @@
  * level structures. However, it is extremely large and complex, and thus warrants its own header.
  *
  * Function prototypes are provided for two utility functions which are likely to be required
- * by concrete implementations of the API. These functions convert between the API's representaiton and
- * the implementations internal structures.
+ * by concrete implementations of the API. These functions convert between the API's representations and
+ * the implementation's internal structures.
  *
  * Also, two utility functions are implemented in the API library for initializing and clearing
  * an OscmsTbsCertificate structure in a consistent way.
@@ -55,7 +55,7 @@ extern "C"
     {
         OSCMS_CERTIFICATE_ID_TYPE_LINKAGE   = 1,
         OSCMS_CERTIFICATE_ID_TYPE_HOSTNAME  = 2,
-        OSCMS_CERTIFICATE_ID_TYPE_BIMARY_ID = 3,
+        OSCMS_CERTIFICATE_ID_TYPE_BINARY_ID = 3,
         OSCMS_CERTIFICATE_ID_TYPE_NONE      = 4
     } OscmsCertificateIdType;
 
@@ -361,7 +361,7 @@ extern "C"
     int oscms_internal_from_tbs_certificate(const OscmsTbsCertificate *tbs_certificate, void *internal);
 
     /**
-     * Initialize an internal reposentation of the TBS certificate structure.
+     * Initialize an internal representation of the TBS certificate structure.
      *
      * All fields are set to their default values (if applicable), all pointers (I.e. OPTIONAL fields) are set to NULL.
      *

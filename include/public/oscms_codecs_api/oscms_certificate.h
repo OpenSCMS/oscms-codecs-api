@@ -117,7 +117,7 @@ extern "C"
     int oscms_internal_from_certificate(const OscmsCertificate *oscms_certificate, void *internal_certificate);
 
     /**
-     * Clear the contents of the provided OscmsCertificate structure, releaseing all allocated memory
+     * Clear the contents of the provided OscmsCertificate structure, releasing all allocated memory
      *
      * Does NOT free the OscmsCertificate structure itself
      *

@@ -70,7 +70,7 @@ extern "C"
         {
             OscmsEeEcaCertRequest eca_ee;
             OscmsEeRaCertRequest ee_ra;
-            OscmsOctetBuffer ee_ra_successor; // Thisis an encoded EeEcaCertRequestSpdu
+            OscmsOctetBuffer ee_ra_successor; // This is an encoded EeEcaCertRequestSpdu
         } pdu;
     } OscmsScopedCertificateRequest;
 

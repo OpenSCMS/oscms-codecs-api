@@ -21,7 +21,7 @@
  *
  * This is always encoded as an ScmsPdu, but may either be the body of an EeRaDownloadRequestPlainSpdu (See Ieee
  * 1609.2.1-2022 Section 7.4.13) or deeply embedded in an EeRaDownloadRequestSpdu (See Ieee 1609.2.1-2022
- * Section 7.4.14) whhich is Signed and Encrypted.
+ * Section 7.4.14) which is Signed and Encrypted.
  */
 
 #ifndef OSCMS_DOWNLOAD_REQUEST_PLAIN_H

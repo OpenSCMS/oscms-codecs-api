@@ -178,7 +178,7 @@ SO_EXPORT bool oscms_octet_buffer_compare(const OscmsOctetBuffer *left, const Os
         return true;
     }
 
-    // If only one is NULL, they can't match (we dont' consider a zero lenghth string to be NULL)
+    // If only one is NULL, they can't match (we dont' consider a zero length string to be NULL)
     if (!left || !right)
     {
         return false;

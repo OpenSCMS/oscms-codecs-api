@@ -34,7 +34,7 @@ extern "C"
      * A 1609Dot2Data-Signed is never used in it's bare form. Rather it is usually
      * used in the definition of a higher level SPDU, such as CertificateManagementInfoStatusSpdu.
      *
-     * This type field allows the concrete implemnetation to determine the type of the higher level SPDU or PDU
+     * This type field allows the concrete implementation to determine the type of the higher level SPDU or PDU
      * and apply the appropriate constraints and checking, using internal representations of the higher level
      * construct.
      */
@@ -47,7 +47,7 @@ extern "C"
         OSCMS_DOT2_DATA_SIGNED_TYPE_EE_ECA_CERT_REQUEST_SPDU                = 4,
         OSCMS_DOT2_DATA_SIGNED_TYPE_RA_EE_CERT_ACK_SPDU                     = 5,
         OSCMS_DOT2_DATA_SIGNED_TYPE_RA_EE_ENROLLMENT_CERT_ACK_SPDU          = 6,
-        OSCMS_DOT2_DATA_SIGNED_TYPE_DOT_DATA_SIGNED_ENCRYTPED_SPDU          = 7,
+        OSCMS_DOT2_DATA_SIGNED_TYPE_DOT_DATA_SIGNED_ENCRYPTED_SPDU          = 7,
         OSCMS_DOT2_DATA_SIGNED_TYPE_ACA_RA_CERT_RESPONSE_SPDU               = 8,
         OSCMS_DOT2_DATA_SIGNED_TYPE_RA_EE_DOWNLOAD_REQUEST_SPDU             = 9,
         OSCMS_DOT2_DATA_SIGNED_TYPE_RA_EE_CERT_INFO_SPDU                    = 10,
@@ -60,7 +60,7 @@ extern "C"
     {
         OscmsDot2DataSignedType enclosing_type;
 
-        OscmsOctetBuffer payload; // Unecnrytped data that has been signed
+        OscmsOctetBuffer payload; // Unencrypted data that has been signed
         OscmsPsid payload_psid;   // PSID associated with the data
         OscmsSignature signature; // Signature for the data
 
@@ -75,7 +75,7 @@ extern "C"
     typedef struct OscmsSignedData
     {
         OscmsPsid payload_psid;              // PSID associated with the data
-        OscmsOctetBuffer payload;            // Unencrytped data that was signed
+        OscmsOctetBuffer payload;            // Unencrypted data that was signed
         OscmsSignature signature;            // Signature for the data
         OscmsCertificate signer_certificate; // Certificate of the signer
     } OscmsSignedData;
@@ -93,7 +93,7 @@ extern "C"
      *
      * An Ieee1609Dot2Data_Signed SPDU is defined in the specification as a parameterized type representing
      * a higher level SPDU, such as CertificateManagementInfoStatusSpdu. This is the actual type which must be
-     * used for the encoding and constraint checking. If a type of "UNKNOWN" is provided, the encoding shoulduse
+     * used for the encoding and constraint checking. If a type of "UNKNOWN" is provided, the encoding should use
      * the generic Ieee1609Dot2Data_Signed encoding.
      *
      * @return 0 on success, and the provided `buffer` will contain the encoded DataSigned and length.
@@ -110,7 +110,7 @@ extern "C"
      *
      * An Ieee1609Dot2Data_Signed SPDU is defined in the specification as a parameterized type representing
      * a higher level SPDU, such as CertificateManagementInfoStatusSpdu. This is the actual type which must be
-     * used for the encoding and constraint checking. If a type of "UNKNOWN" is provided, the encoding shoulduse
+     * used for the encoding and constraint checking. If a type of "UNKNOWN" is provided, the encoding should use
      * the generic Ieee1609Dot2Data_Signed encoding.
      *
      * @return 0 on success

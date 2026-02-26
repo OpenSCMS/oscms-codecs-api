@@ -34,7 +34,7 @@ SO_EXPORT void oscms_empty_ee_ra_cert_request(OscmsEeRaCertRequest *ee_ra_cert_r
     (void)explicit_bzero(ee_ra_cert_request, sizeof(OscmsEeRaCertRequest));
 }
 
-SO_EXPORT void osmcs_free_ee_ra_cert_request(OscmsEeRaCertRequest *ee_ra_cert_request)
+SO_EXPORT void oscms_free_ee_ra_cert_request(OscmsEeRaCertRequest *ee_ra_cert_request)
 {
     if (ee_ra_cert_request)
     {

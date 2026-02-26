@@ -57,7 +57,7 @@ SO_EXPORT int oscms_sequence_add(OscmsSequence *sequence, void *data)
         size_t new_size = sequence->allocated_size ? sequence->allocated_size * 2 : 16;
         void **old_data = sequence->data; // In case of failure
 
-        // If the data pointer is NULL, reallocarray will perfoam an inital allocation.
+        // If the data pointer is NULL, reallocarray will perform an inital allocation.
         sequence->data = (void **)reallocarray(sequence->data, new_size, sizeof(void *));
 
         if (!sequence->data)

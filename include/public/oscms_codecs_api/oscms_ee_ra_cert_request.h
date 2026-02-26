@@ -35,7 +35,7 @@ extern "C"
 #include "oscms_codecs_api/oscms_tbs_certificate.h"
 #include "oscms_codecs_api/so_export.h"
 
-    // Note that the ButteryflyExpansion type (Ieee1609.2.1-2022 Section 7.3.36) is defined as a CHOICE. However, it
+    // Note that the ButterflyExpansion type (Ieee1609.2.1-2022 Section 7.3.36) is defined as a CHOICE. However, it
     // only has one variant, which contains a single  OCTET STRING. Therefore we simply replace it with an
     // OscmsOCtetBuffer
 

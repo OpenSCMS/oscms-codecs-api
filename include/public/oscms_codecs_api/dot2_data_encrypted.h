@@ -29,7 +29,7 @@ extern "C"
     /**
      * @file dot2_data_encrypted.h
      *
-     * @brief Defintion of types and API functions for the Ieee1609Dot2Data-Encrypted enity
+     * @brief Definition of types and API functions for the Ieee1609Dot2Data-Encrypted entity
      *
      * See Ieee1609.2.1-2022 Section 7.5.2
      *
@@ -43,7 +43,7 @@ extern "C"
         OSCMS_SYMMETRIC_CIPHERTEXT_SM4_CCM = 2,
     } OscmsSymmCiphertextType;
 
-    typedef struct OscmsSymmetricCphertext
+    typedef struct OscmsSymmetricCiphertext
     {
         OscmsSymmCiphertextType type;
         OscmsOctetBuffer cipher_text; // Encrypted payload
@@ -75,12 +75,12 @@ extern "C"
     // See Ieee1609.2-2022 Section 6.3.42
     typedef enum OscmsRecipientInfoType
     {
-        OSCMS_RECIPIENT_INFO_TYPE_UNKNOWN    = 0,
-        OSCMS_RECIPIENT_INFO_TYPE_PSK        = 1,
-        OSCMS_RECIPIENT_INFO_TYPE_SYMMETRIC  = 2,
-        OSCMS_RECIPIENT_INFO_TYPE_CERTIICATE = 3,
-        OSCMS_RECIPIENT_INFO_TYPE_SIGNED     = 4,
-        OSCMS_RECIPIENT_INFO_TYPE_REK        = 5,
+        OSCMS_RECIPIENT_INFO_TYPE_UNKNOWN     = 0,
+        OSCMS_RECIPIENT_INFO_TYPE_PSK         = 1,
+        OSCMS_RECIPIENT_INFO_TYPE_SYMMETRIC   = 2,
+        OSCMS_RECIPIENT_INFO_TYPE_CERTIFICATE = 3,
+        OSCMS_RECIPIENT_INFO_TYPE_SIGNED      = 4,
+        OSCMS_RECIPIENT_INFO_TYPE_REK         = 5,
     } OscmsRecipientInfoType;
 
     typedef struct OscmsRecipientInfo
@@ -98,7 +98,7 @@ extern "C"
                 OscmsSymmetricCiphertext encryption_key;
             } symmetric;
 
-            // OSCMS_RECIPIENT_INFO_TYPE_CERTIICATE
+            // OSCMS_RECIPIENT_INFO_TYPE_CERTIFICATE
             // OSCMS_RECIPIENT_INFO_TYPE_SIGNED
             // OSCMS_RECIPIENT_INFO_TYPE_REK
             struct
@@ -115,14 +115,14 @@ extern "C"
      * A 1609Dot2Data-Encrypted is never used in it's bare form. Rather it is usually
      * used in the definition of a higher level SPDU, such as CertificateManagementInfoStatusSpdu.
      *
-     * This type  allows the concrete implemnetation to determine the type of the higher level SPDU or PDU
+     * This type  allows the concrete implementation to determine the type of the higher level SPDU or PDU
      * and apply the appropriate constraints and checking, using internal representations of the higher level construct.
      */
 
     typedef enum OscmsDot2DataEncryptedType
     {
         OSCMS_DOT2_DATA_ENCRYPTED_TYPE_UNKNOWN,
-        OSCMS_DOT2_DATA_ENCRYPTED_TYPE_EE_RA_CERT_REQEUST_SPDU,
+        OSCMS_DOT2_DATA_ENCRYPTED_TYPE_EE_RA_CERT_REQUEST_SPDU,
         OSCMS_DOT2_DATA_ENCRYPTED_TYPE_EE_RA_DOWNLOAD_REQUEST_SPDU,
         OSCMS_DOT2_DATA_ENCRYPTED_TYPE_EE_RA_SUCCESSOR_ENROLLMENT_CERT_REQUEST_SPDU,
         OSCMS_DOT2_DATA_ENCRYPTED_TYPE_ACA_EE_CERT_RESPONSE_CUBK_SPDU,
@@ -152,10 +152,10 @@ extern "C"
     /**
      * @brief Decode the Ieee1609Dot2Data-Encrypted
      *
-     * Extract the encrytped payload and recipient information from a COER encoded Ieee1609Dot2Data-Encrypted
+     * Extract the encrypted payload and recipient information from a COER encoded Ieee1609Dot2Data-Encrypted
      * structure.
      *
-     * Specifying the enclosing type allows the implemetnation to check for specific constraints on the higher level
+     * Specifying the enclosing type allows the implementations to check for specific constraints on the higher level
      * SPDU or PDU
      *
      * @param[in] encoded The COER encoded Ieee1609Dot2Data-Encrypted
@@ -185,7 +185,7 @@ extern "C"
     /**
      * @brief Free all memory allocated for the OscmsDot2DataEncrypted
      *
-     * Releases all memory allocated in bulding the OsmcsDot2DataEncrypted, but not the OscmsSequence instance itself.
+     * Releases all memory allocated in building the OscmsDot2DataEncrypted, but not the OscmsSequence instance itself.
      *
      * @param[in] dot2_data_encrypted The OscmsDot2DataEncrypted to free
      */
@@ -194,7 +194,7 @@ extern "C"
     /**
      * @brief Free all memory allocated for the OscmsDot2DataEncrypted
      *
-     * Releases all memory allocated in bulding the OsmcsDot2DataEncrypted, as well as the OscmsDot2DataEncrypted
+     * Releases all memory allocated in building the OscmsDot2DataEncrypted, as well as the OscmsDot2DataEncrypted
      * instance itself.
      *
      * @param[in] dot2_data_encrypted The OscmsDot2DataEncrypted to free
