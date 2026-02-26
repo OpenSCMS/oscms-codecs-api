@@ -37,7 +37,7 @@ extern "C"
      * Therefore, to compose and encode a Certificate Management Info Status SPDU, you must follow these steps:
      *
      * 1. Encode the inner ScmsPdu by calling `oscms_encode_cert_mgt_pdu`
-     * 2. Genrate the signature for the inner ScmsPdu per the specification
+     * 2. Generate the signature for the inner ScmsPdu per the specification
      * 3. Encode the outer IeeeDot2Data-Signed SPDU by calling `oscms_encode_dot2_data_signed`
      *
      * The caller will need to release the memory allocated for the inner ScmsPdu and the outer IeeeDot2Data-Signed SPDU

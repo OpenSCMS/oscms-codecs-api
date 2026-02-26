@@ -21,7 +21,7 @@
 #include "oscms_codecs_api/oscms_multi_signed_ctl.h"
 #include "oscms_codecs_api/oscms_utilities.h"
 
-SO_EXPORT void osmcs_empty_multi_signed_ctl(OscmsMultiSignedCtl *msc)
+SO_EXPORT void oscms_empty_multi_signed_ctl(OscmsMultiSignedCtl *msc)
 {
     if (!msc)
     {

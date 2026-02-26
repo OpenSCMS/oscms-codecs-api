@@ -23,9 +23,9 @@
  * of pointers to dynamically allocated data.
  *
  * The above is important. Whilst the OscmsSequence can be initialized with a static array and/or the
- * pointers may refrence static memory, the OscmsSequence is not responsible for freeing this memory.
+ * pointers may reference static memory, the OscmsSequence is not responsible for freeing this memory.
  * Do NOT free the memory used by the OscmsSequence by calling either oscms_empty_sequence or oscms_free_sequence
- * as these always assume that botht the enclosed array, and the pointers stored in the array need to be freed.
+ * as these always assume that both the enclosed array, and the pointers stored in the array need to be freed.
  *
  */
 #ifndef OSCMS_SEQUENCE_H
@@ -65,8 +65,8 @@ extern "C"
      */
     typedef struct OscmsSequence
     {
-        size_t allocated_size; // Number of poitners which can be stored in the allocated array
-        size_t count;          // Number of poitners currently stored in the array
+        size_t allocated_size; // Number of pointers which can be stored in the allocated array
+        size_t count;          // Number of pointers currently stored in the array
         void **data;           // Dynamically allocated buffer.
     } OscmsSequence;
 
@@ -84,7 +84,7 @@ extern "C"
      * @param sequence The OscmsSequence structure to free
      *
      * Free all memory used by the OscmsSequence structure and the pointers stored
-     * in the array as well as the strucutre  itself.
+     * in the array as well as the structure itself.
      *
      */
     SO_EXPORT void oscms_free_sequence(OscmsSequence *sequence);

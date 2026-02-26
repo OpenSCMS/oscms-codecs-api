@@ -24,7 +24,7 @@
  * They are not intended to be called directly by clients of the API, but are expected to be
  * needed internally by concrete implementations (hence the use of `void *` parameters).
  *
- * Additonally, two utility functions are provided for initializing and clearing
+ * Additionally, two utility functions are provided for initializing and clearing
  * an OscmsEccCurvePoint structure in a consistent way.
  *
  */
@@ -64,7 +64,7 @@ extern "C"
      * @brief Converts between the API's representation of an ECC curve point and the implementations internal
      * representation
      *
-     * No memeory tracking ability is required, as the internal representations are expected to track their own memory.
+     * No memory tracking ability is required, as the internal representations are expected to track their own memory.
      *
      * @param ecc_curve_point The ECC curve point to convert.
      * @param internal The internal representation of the ECC curve point.

@@ -54,7 +54,7 @@ extern "C"
     /**
      * @brief Release all dynamically allocated resources in an OscmsSignature
      *
-     * @param oscms_signature The OSCMS repesentation of a Signature object
+     * @param oscms_signature The OSCMS representation of a Signature object
      *
      * NOTE: This function does NOT free the OscmsSignature itself
      */
@@ -63,23 +63,23 @@ extern "C"
     /**
      * @brief Release all dynamically allocated resources in an OscmsSignature
      *
-     * @param oscms_signature The OSCMS repesentation of a Signature object
+     * @param oscms_signature The OSCMS representation of a Signature object
      *
      * NOTE: This function also frees the OscmsSignature itself
      */
     SO_EXPORT void oscms_free_signature(OscmsSignature *oscms_signature);
 
     // These functions are not exported to the bridge. They is intended for internal use
-    // by concrete implementations, as encoding and decoding of higher level strucutres often need
+    // by concrete implementations, as encoding and decoding of higher level structures often need
     // to do these conversions.
     //
     // Implementation is optional
 
     /**
-     * @brief Convert an OscmsSignature to the CODEC repesentation of a Signature
+     * @brief Convert an OscmsSignature to the CODEC representation of a Signature
      *
-     * @param oscms_signature The OSCMS repesentation of a Signature object
-     * @param signature       The CODEC repesentation of a Signature object
+     * @param oscms_signature The OSCMS representation of a Signature object
+     * @param signature       The CODEC representation of a Signature object
      *
      *
      * @return 0 on success
@@ -87,10 +87,10 @@ extern "C"
     int oscms_signature_to_internal(const OscmsSignature *oscms_signature, void *signature);
 
     /**
-     * @brief Convert the CODEC repesentation of a Signature to an OscmsSignature
+     * @brief Convert the CODEC representation of a Signature to an OscmsSignature
      *
-     * @param signature       The CODEC repesentation of a Signature object
-     * @param oscms_signature The OSCMS repesentation of a Signature object
+     * @param signature       The CODEC representation of a Signature object
+     * @param oscms_signature The OSCMS representation of a Signature object
      * @param tracker         The memory tracker. If NULL, no memory tracking will occur
      *
      * @return 0 on success
