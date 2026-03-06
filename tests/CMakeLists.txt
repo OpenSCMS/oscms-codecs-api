@@ -24,12 +24,4 @@ target_include_directories(api_tests
 
 add_test(NAME api_tests COMMAND api_tests)
 
-# file(GLOB TEST_JSON CONFIGURE_DEPENDS "*.json") file(GLOB TEST_CSV
-# CONFIGURE_DEPENDS "*.csv") file(GLOB TEST_TXT CONFIGURE_DEPENDS "*.txt")
-
-# foreach(TEST_FILE ${TEST_JSON} ${TEST_CSV} ${TEST_TXT}) cmake_path(GET
-# TEST_FILE FILENAME TEST_BASENAME) message(STATUS "Configuring TEST FILE:
-# ${TEST_BASENAME}") configure_file(${TEST_BASENAME} ${TEST_BASENAME} COPYONLY)
-# endforeach()
-
 gtest_discover_tests(api_tests)
