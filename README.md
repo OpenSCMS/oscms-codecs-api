@@ -31,15 +31,15 @@ At present, the API is restricted to only those entities sent or received by the
 <!-- omit from toc -->
 ## Table of Contents
 
-- [Development](#development)
-  - [Installing Dependencies](#installing-dependencies)
-  - [Using Docker](#using-docker)
-  - [Getting the Code](#getting-the-code)
-  - [Building the code](#building-the-code)
-  - [Running Unit Tests](#running-unit-tests)
-  - [Running Valgrind](#running-valgrind)
-- [Contributing](#contributing)
-- [License](#license)
+* [Development](#development)
+  * [Installing Dependencies](#installing-dependencies)
+  * [Using Docker](#using-docker)
+  * [Getting the Code](#getting-the-code)
+  * [Building the code](#building-the-code)
+  * [Running Unit Tests](#running-unit-tests)
+  * [Running Valgrind](#running-valgrind)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## Development
 
@@ -107,6 +107,8 @@ The list of repositories, and their relative submodule dependencies, is as follo
         * [etsi_ts103097-asn](<https://github.com/OpenSCMS/etsi_ts103097-asn>)
         * [ieee1609dot2dot1-asn](<https://github.com/OpenSCMS/ieee1609dot2dot1-asn>)
 
+The project also makes use of the [Cmake Helpers project](https://github.com/OpenSCMS/oscms-cmake-helpers.git)
+
 ### Building the code
 
 All C code is built using `CMake` and the `CMake` scripts will enforce out-of-source builds.
@@ -130,6 +132,7 @@ All CMake scripts support a common set of options and command line definitions.
 | CMAKE_BUILD_TYPE | Debug | Defines the build type. Acceptable values are Debug or Release. This primarily affects debug symbols and optimization levels. |
 | EXTRA_MEMCHECK_OPTIONS | empty | Allows the specification of additional arguments to `valgrind`|
 | RUN_CPPCHECK | On | Enables or disables running `cppcheck` on all code during the build. |
+| SKIP_INSTALL | Off | If set to On, suppresses generation of any `install` targets |
 
 ### Running Unit Tests
 
