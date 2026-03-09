@@ -14,154 +14,22 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Enforce out-of-source builds
-if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
-  message(
-    FATAL_ERROR
-      "In-source builds are not allowed. Please create a build directory and run CMake from there.\n"
-      "You will need to remove CMakeCache.txt and CMakeFiles/ to clean up the generated files."
-  )
-endif()
-
-# Ensure one of the two acceptable build types are selected: DEBUG or RELEASE.
-# Default to DEBUG
-if(NOT CMAKE_BUILD_TYPE)
-  # No build type specified, default to Debug and force it into the cache
-  message(STATUS "No build type specified, defaulting to Debug")
-  set(CMAKE_BUILD_TYPE
-      Debug
-      CACHE STRING "Build type" FORCE)
-else()
-  # Check they chose an acceptable one
-  set(valid_build_types "Debug" "Release")
-  list(FIND valid_build_types ${CMAKE_BUILD_TYPE} _index)
-  if(${_index} EQUAL -1)
-    message(
-      FATAL_ERROR
-        "Unknown build type ${CMAKE_BUILD_TYPE}. Supported build types are Debug and Release"
-    )
-  endif()
-  unset(valid_build_types)
-endif()
-
 cmake_minimum_required(VERSION 3.28.3)
 project(
   OscmsApi
+  DESCRIPTION "OpenSCMS Codecs Abstract API"
   VERSION 1.0.0
-  LANGUAGES C CXX) # CXX added for testig support
+  LANGUAGES C CXX) # CXX added for testing support
 
-# set cmake build options
-option(BUILD_TESTS "Build unit tests" ON)
-option(RUN_CPPCHECK "Enable cppcheck" ON)
+include(FetchContent)
+FetchContent_Declare(
+  oscms_cmake_helpers
+  GIT_REPOSITORY https://github.com/OpenSCMS/oscms-cmake-helpers.git
+  GIT_TAG main)
+FetchContent_MakeAvailable(oscms_cmake_helpers)
 
-# set compiler flags Standard compile options
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED TRUE)
-set(C_EXTENSIONS ON) # Enable gnu11
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CXX_EXTENSIONS ON) # Enable gnu11
-
-# Enforce C compiler minimum version of 11 (which is what comes with Ubuntu
-# 22.04). CI jobs actually use gcc:12
-#
-# C++ is only used for unit tests, so we don't care about its version
-
-if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  if(CMAKE_C_COMPILER_VERSION VERSION_LESS 11)
-    message(
-      FATAL_ERROR
-        "C compiler version must be at least 11.0.0, you are running ${CMAKE_C_COMPILER_VERSION}. Please update your C compiler.\n"
-        "You will need to remove CMakeCache.txt and CMakeFiles/ to clean up the generated files."
-    )
-  endif()
-else()
-  message(
-    FATAL_ERROR
-      "C compiler must be GNU, version >= 11. Please update your C compiler.\n"
-      "You will need to remove CMakeCache.txt and CMakeFiles/ to clean up the generated files."
-  )
-endif()
-
-# Find cppcheck
-if(RUN_CPPCHECK)
-  find_program(CPPCHECK cppcheck)
-  if(NOT CPPCHECK)
-    message(WARNING "cppcheck not found. Disabling cppcheck.")
-    set(RUN_CPPCHECK OFF)
-  else()
-    message(STATUS "Found cppcheck: ${CPPCHECK}")
-    set(CPPCHECK_OPTIONS
-        --language=c
-        --inline-suppr
-        --platform=unix64
-        --enable=all
-        "--suppressions-list=${PROJECT_SOURCE_DIR}/.cppcheck-suppress"
-        --force
-        --error-exitcode=1)
-  endif()
-endif()
-
-if(BUILD_TESTS)
-  # Set up for unit testing using googletest
-  include(FetchContent)
-
-  # Disable installation of googletest into the install tree
-  set(INSTALL_GTEST
-      OFF
-      CACHE BOOL "" FORCE)
-
-  # Disable installation of gmock
-  set(INSTALL_GMOCK
-      OFF
-      CACHE BOOL "" FORCE)
-
-  # Download and unpack googletest at configure time
-  FetchContent_Declare(
-    googletest # Specify the commit you depend on and update it regularly.
-    URL https://github.com/google/googletest/archive/refs/tags/v1.16.0.zip)
-
-  # For Windows: Prevent overriding the parent project's compiler/linker
-  # settings
-  set(gtest_force_shared_crt
-      ON
-      CACHE BOOL "" FORCE)
-
-  # Add googletest directly to our build. This adds the following targets: *
-  # gtest * gtest_main
-  FetchContent_MakeAvailable(googletest)
-  # FetchContent_MakeAvailable(googlemock)
-
-  # Enable unit testing
-  enable_testing()
-
-  include(GoogleTest)
-
-  set(MEMORYCHECK_COMMAND_OPTIONS
-      "--tool=memcheck --leak-check=full --num-callers=50 --show-reachable=yes ${EXTRA_MEMCHECK_OPTIONS}"
-  )
-  include(CTest)
-endif()
-
-# Ensure the explicit_bzero function is available
-include(CheckSourceCompiles)
-
-check_source_compiles(
-  C
-  "
-    #include <string.h>
-    int main() {
-        char buf[10];
-        explicit_bzero(buf, 10);
-        return 0;
-    }
-"
-  HAVE_EXPLICIT_BZERO)
-
-if(NOT HAVE_EXPLICIT_BZERO)
-  message(
-    FATAL_ERROR "Target platform does not provide explicit_bzero() function")
-endif()
+oscms_enable_cppcheck()
+oscms_enable_testing()
 
 # add source files
 file(GLOB SOURCES "src/*.c" CMAKE_CONFIGURE_DEPENDS)
